@@ -3,7 +3,7 @@ name: Desplegar sitio web en InfinityFree
 on:
   push:
     branches:
-      - main # O la rama que uses para desplegar
+      - master # Rama principal del despliegue
 
 jobs:
   deploy:
