@@ -22,3 +22,5 @@ jobs:
           exclude: |
             LICENSE
             README.md
+            .git
+            .github
