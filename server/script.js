@@ -1,3 +1,5 @@
+import { main } from "../assets/js/main.js";
+
 document.addEventListener("DOMContentLoaded", datos);
 
 function datos() {
@@ -7,16 +9,37 @@ function datos() {
   datos.onreadystatechange = function () {
     if (datos.readyState == 4 && datos.status == 200) {
       let respuesta = datos.responseText;
-      // let body = document.querySelector("body");
-      // let div = document.createElement("div");
-      // div.innerHTML = json.parse(respuesta).html;
-      // body.appendChild(div);
-
-      console.log(respuesta);
       let json = JSON.parse(respuesta);
-
-      console.log(json);
+      // console.log(json.css);
+      ordenarCss(json);
+      main(json);
     }
   };
   datos.send();
+}
+
+function ordenarCss(json) {
+  let prioridad = "main.css";
+  for (let i = 0; i < json.css.length; i++) {
+    if (json.css[i].includes(prioridad)) {
+      // console.log(
+      //   prioridad +
+      //     " encontrado en la posición " +
+      //     i +
+      //     " del array: " +
+      //     json.css[i]
+      // );
+      let elemento = json.css.splice(i, 1); // Eliminar el elemento encontrado
+      json.css.unshift(elemento); // Añadir el elemento al principio del array
+    } else {
+      // console.log(
+      //   prioridad +
+      //     " no encontrado en la posición " +
+      //     i +
+      //     " del array: " +
+      //     json.css[i]
+      // );
+    }
+  }
+  // console.log("Nuevo JSON: " + json.css);
 }
